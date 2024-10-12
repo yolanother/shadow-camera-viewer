@@ -1,0 +1,58 @@
+
+/* src/App.css */
+
+.App {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+}
+
+.camera-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  width: 100%;
+}
+
+.camera-preview {
+  background-color: #222;
+  color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.camera-preview video {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+h4 {
+  margin-bottom: 10px;
+}
+
+.webcam-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.webcam-video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;  /* Preserve aspect ratio, show the entire camera view */
+  background-color: #000;  /* Add black background to fill empty space */
+}
