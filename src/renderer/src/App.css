@@ -56,3 +56,7 @@ h4 {
   object-fit: contain;  /* Preserve aspect ratio, show the entire camera view */
   background-color: #000;  /* Add black background to fill empty space */
 }
+
+.hide-cursor {
+  cursor: none;  /* This hides the cursor */
+}
