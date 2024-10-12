@@ -1,4 +1,3 @@
-// src/CameraChooser.tsx
 import React, { useEffect, useState } from 'react';
 
 interface CameraDevice {
@@ -33,11 +32,15 @@ const CameraChooser: React.FC<CameraChooserProps> = ({ onSelect }) => {
   }, []);
 
   useEffect(() => {
-    // Get preview streams for each device
+    // Get preview streams for each device at lower resolution
     const getPreviewStreams = async () => {
       for (const device of devices) {
         const stream = await navigator.mediaDevices.getUserMedia({
-          video: { deviceId: { exact: device.deviceId } },
+          video: {
+            deviceId: { exact: device.deviceId },
+            width: { ideal: 1920 },
+            height: { ideal: 1080 },
+          },
         });
         setPreviews(prev => ({ ...prev, [device.deviceId]: stream }));
       }

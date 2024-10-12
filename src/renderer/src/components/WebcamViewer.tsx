@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 
 interface WebcamViewerProps {
   deviceId: string;
@@ -7,13 +7,18 @@ interface WebcamViewerProps {
 
 const WebcamViewer: React.FC<WebcamViewerProps> = ({ deviceId, onBack }) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const [isFullscreen, setIsFullscreen] = useState(false);
 
   useEffect(() => {
     const getWebcam = async () => {
       try {
+        // Request 4K resolution (3840x2160) for the selected camera
         const stream = await navigator.mediaDevices.getUserMedia({
-          video: { deviceId: { exact: deviceId } },
+          video: {
+            deviceId: { exact: deviceId },
+            width: { ideal: 3840, max: 3840 },  // Request 4K resolution width
+            height: { ideal: 2160, max: 2160 },  // Request 4K resolution height
+            frameRate: { ideal: 60, max: 60 },  // Prefer 60 FPS
+          },
         });
         if (videoRef.current) {
           videoRef.current.srcObject = stream;
@@ -21,7 +26,7 @@ const WebcamViewer: React.FC<WebcamViewerProps> = ({ deviceId, onBack }) => {
         }
       } catch (err) {
         console.error('Error accessing webcam: ', err);
-        alert('Unable to access the webcam. Please check permissions.');
+        alert('Unable to access the webcam at 4K resolution. Please check your device capabilities.');
       }
     };
 
@@ -38,22 +43,16 @@ const WebcamViewer: React.FC<WebcamViewerProps> = ({ deviceId, onBack }) => {
   useEffect(() => {
     const enterFullScreen = () => {
       const elem = document.documentElement;
-
       if (elem.requestFullscreen) {
         elem.requestFullscreen();
       }
-
-      setIsFullscreen(true);
     };
 
-    const exitFullScreen = () => {
-      setIsFullscreen(false);
-    };
+    enterFullScreen();
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         onBack();
-        exitFullScreen();
       }
     };
 
@@ -64,11 +63,6 @@ const WebcamViewer: React.FC<WebcamViewerProps> = ({ deviceId, onBack }) => {
     };
 
     window.addEventListener('keydown', handleKeyDown);
-    document.addEventListener('fullscreenchange', () => {
-      if (!document.fullscreenElement) {
-        exitFullScreen();
-      }
-    });
 
     if (videoRef.current) {
       videoRef.current.addEventListener('click', handleVideoClick);
@@ -76,7 +70,6 @@ const WebcamViewer: React.FC<WebcamViewerProps> = ({ deviceId, onBack }) => {
 
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
-      document.removeEventListener('fullscreenchange', exitFullScreen);
       if (videoRef.current) {
         videoRef.current.removeEventListener('click', handleVideoClick);
       }
@@ -84,7 +77,7 @@ const WebcamViewer: React.FC<WebcamViewerProps> = ({ deviceId, onBack }) => {
   }, [onBack]);
 
   return (
-    <div className={`webcam-container ${isFullscreen ? 'hide-cursor' : ''}`}>
+    <div className="webcam-container">
       <video ref={videoRef} className="webcam-video" autoPlay muted playsInline />
     </div>
   );
