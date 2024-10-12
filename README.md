@@ -1,8 +1,3 @@
-Here's a basic `README.md` file for your **Shadowcast Viewer** app. This covers the key aspects of your app, including setup instructions, how to build, and how to publish a release.
-
-### `README.md`
-
-```markdown
 # Shadowcast Viewer
 
 **Shadowcast Viewer** is an Electron-based desktop application that provides a full-screen view of camera sources. It allows users to select available webcams and view them in full-screen mode with the ability to hide the cursor and re-enter full-screen mode by clicking on the video.
@@ -139,23 +134,3 @@ Each time the `build.sh` script is run, the patch version is automatically incre
 ## License
 
 [MIT](LICENSE)
-
-```
-
-### Summary of the Sections:
-
-- **Features**: Overview of key features in the app.
-- **Prerequisites**: What tools and dependencies are required for the project.
-- **Setup Instructions**: Steps to clone the repo and install dependencies.
-- **Running the Application**: How to run the app in development mode.
-- **Building the Application**: Instructions for using the `build.sh` script to build the app.
-- **Publishing a Release**: Instructions for using the `publish.sh` script to create a GitHub release.
-- **Versioning**: Explanation of how the versioning works with the automated version increment.
-- **Configuration**: Explanation of `.dest-path` and versioning behavior in `package.json`.
-
-### Additional Notes:
-
-- Be sure to update the GitHub repo URL in the setup section if necessary.
-- You can extend the documentation as needed, especially if you add new features or steps.
-
-Let me know if you need any more changes or additions!
