@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { useRef, useEffect, useState } from 'react';
 import CameraSettings from './CameraSettings';
 import './WebcamViewer.css';

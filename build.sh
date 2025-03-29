@@ -34,7 +34,7 @@ git commit -m "Bump version to $NEW_VERSION"
 
 # 7. Run electron-builder to build the app
 echo "Running electron-builder..."
-electron-builder
+npm run build:win
 
 # 8. Check if .dest-path exists
 if [ ! -f .dest-path ]; then

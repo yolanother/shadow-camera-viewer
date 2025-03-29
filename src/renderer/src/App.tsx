@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 // src/App.tsx
 import React, { useState } from 'react';
 import './App.css';

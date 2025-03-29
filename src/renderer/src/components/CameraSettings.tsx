@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from 'react';
 import './CameraSettings.css';
 
@@ -27,7 +28,7 @@ const CameraSettings: React.FC<CameraSettingsProps> = ({ deviceId, stream, onClo
         if ('getCapabilities' in videoTrack) {
           const capabilities = videoTrack.getCapabilities();
           console.log('Camera capabilities:', capabilities);
-          
+
           // Extract available resolutions
           if (capabilities.width && capabilities.height) {
             const availableResolutions: Resolution[] = [
@@ -39,15 +40,15 @@ const CameraSettings: React.FC<CameraSettingsProps> = ({ deviceId, stream, onClo
               // Filter resolutions based on camera capabilities
               const widthCap = capabilities.width as MediaTrackCapabilities['width'];
               const heightCap = capabilities.height as MediaTrackCapabilities['height'];
-              
+
               return (!widthCap?.min || res.width >= widthCap.min) &&
-                     (!widthCap?.max || res.width <= widthCap.max) &&
-                     (!heightCap?.min || res.height >= heightCap.min) &&
-                     (!heightCap?.max || res.height <= heightCap.max);
+                (!widthCap?.max || res.width <= widthCap.max) &&
+                (!heightCap?.min || res.height >= heightCap.min) &&
+                (!heightCap?.max || res.height <= heightCap.max);
             });
-            
+
             setResolutions(availableResolutions);
-            
+
             // Set current resolution as selected
             const currentWidth = videoTrack.getSettings().width;
             const currentHeight = videoTrack.getSettings().height;
@@ -57,7 +58,7 @@ const CameraSettings: React.FC<CameraSettingsProps> = ({ deviceId, stream, onClo
               setSelectedResolution(`${availableResolutions[0].width}x${availableResolutions[0].height}`);
             }
           }
-          
+
           // Extract available framerates
           if (capabilities.frameRate) {
             const standardFrameRates = [60, 30, 24, 15];
@@ -66,9 +67,9 @@ const CameraSettings: React.FC<CameraSettingsProps> = ({ deviceId, stream, onClo
               (!frameRateCap?.min || rate >= frameRateCap.min) &&
               (!frameRateCap?.max || rate <= frameRateCap.max)
             );
-            
+
             setFrameRates(availableFrameRates);
-            
+
             // Set current framerate as selected
             const currentFrameRate = videoTrack.getSettings().frameRate;
             if (currentFrameRate) {
@@ -97,13 +98,13 @@ const CameraSettings: React.FC<CameraSettingsProps> = ({ deviceId, stream, onClo
       if (videoTrack && selectedResolution && selectedFrameRate) {
         const [width, height] = selectedResolution.split('x').map(Number);
         const frameRate = Number(selectedFrameRate);
-        
+
         const constraints = {
           width: { ideal: width },
           height: { ideal: height },
           frameRate: { ideal: frameRate }
         };
-        
+
         if ('applyConstraints' in videoTrack) {
           videoTrack.applyConstraints(constraints)
             .then(() => console.log('Applied new constraints:', constraints))
@@ -118,7 +119,7 @@ const CameraSettings: React.FC<CameraSettingsProps> = ({ deviceId, stream, onClo
       <div className="settings-content">
         <h2>Camera Settings</h2>
         <p>Device ID: {deviceId.substring(0, 15)}...</p>
-        
+
         <div className="settings-group">
           <label>Resolution:</label>
           <select
@@ -132,7 +133,7 @@ const CameraSettings: React.FC<CameraSettingsProps> = ({ deviceId, stream, onClo
             ))}
           </select>
         </div>
-        
+
         <div className="settings-group">
           <label>Frame Rate:</label>
           <select
@@ -146,7 +147,7 @@ const CameraSettings: React.FC<CameraSettingsProps> = ({ deviceId, stream, onClo
             ))}
           </select>
         </div>
-        
+
         <div className="settings-actions">
           <button onClick={applySettings}>Apply</button>
           <button onClick={onClose}>Close</button>
