@@ -35,7 +35,7 @@ if [ ! -f "$SOURCE_PATH" ]; then
 fi
 
 # 6. Tag the new version in Git
-#git tag -a "v$NEW_VERSION" -m "Release version $NEW_VERSION"
+git tag -a "v$NEW_VERSION" -m "Release version $NEW_VERSION"
 git push origin "v$NEW_VERSION"
 echo "Git tag v$NEW_VERSION pushed to remote"
 

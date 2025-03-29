@@ -1,0 +1,55 @@
+.settings-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.settings-content {
+  background: #2a2a2a;
+  padding: 2rem;
+  border-radius: 8px;
+  min-width: 500px;
+  width: 60%;
+  max-width: 800px;
+  color: white;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.settings-group {
+  margin: 1rem 0;
+}
+
+.settings-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.settings-group select {
+  width: 100%;
+  padding: 0.5rem;
+  background: #404040;
+  color: white;
+  border: 1px solid #555;
+  border-radius: 4px;
+}
+
+button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: #007acc;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #0062a3;
+}

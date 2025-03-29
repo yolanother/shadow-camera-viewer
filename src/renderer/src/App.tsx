@@ -14,7 +14,7 @@ const App: React.FC = () => {
       ) : (
         <WebcamViewer
           deviceId={selectedDeviceId}
-          onBack={() => setSelectedDeviceId(null)}  // Return to camera chooser
+          onBack={() => setSelectedDeviceId(null)}
         />
       )}
     </div>
